@@ -19,4 +19,16 @@ export class RecipeListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  doSomething() {
+
+	   let value: string = 'valor';
+
+	   value += "V";
+
+	   value += "F";
+
+	  console.log('Teste your logic');
+	  
+  }
+
 }
