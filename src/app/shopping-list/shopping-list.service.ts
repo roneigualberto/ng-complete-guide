@@ -1,6 +1,7 @@
 import { Ingredient } from '../shared/ingredients.model';
 
 import { Subject } from 'rxjs';
+import { TitleCasePipe } from '@angular/common';
 
 export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
@@ -30,6 +31,11 @@ export class ShoppingListService {
 		}*/
 
     this.ingredients.push(...ingredients);
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
+
+  updateIngredient(index: number, newIngredient: Ingredient) {
+    this.ingredients[index] = newIngredient;
     this.ingredientsChanged.next(this.ingredients.slice());
   }
 }
