@@ -3,7 +3,7 @@ import { RecipeService } from './../recipe.service';
 import { _ParseAST } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -18,7 +18,8 @@ export class RecipeEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -73,6 +74,7 @@ export class RecipeEditComponent implements OnInit {
       this.recipeService.addRecipe(newRecipe);
     }
     console.log(this.recipeForm);
+    this.onCancel();
   }
 
   get controls() {
@@ -87,5 +89,11 @@ export class RecipeEditComponent implements OnInit {
         amount: new FormControl(null, Validators.pattern(/^[1-9]+[0-9]*$/)),
       })
     );
+  }
+
+  onCancel() {
+    this.router.navigate(['../'], {
+      relativeTo: this.route,
+    });
   }
 }
