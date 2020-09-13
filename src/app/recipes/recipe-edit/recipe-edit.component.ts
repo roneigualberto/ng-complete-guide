@@ -1,3 +1,4 @@
+import { Recipe } from './../recipe.model';
 import { RecipeService } from './../recipe.service';
 import { _ParseAST } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
@@ -64,6 +65,13 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSubmit() {
+    const newRecipe: Recipe = this.recipeForm.value;
+
+    if (this.editMode) {
+      this.recipeService.updateRecipe(this.id, newRecipe);
+    } else {
+      this.recipeService.addRecipe(newRecipe);
+    }
     console.log(this.recipeForm);
   }
 
