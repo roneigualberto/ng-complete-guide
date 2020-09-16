@@ -25,7 +25,11 @@ export class DataStoreService {
 
   fetchRecipes() {
     return this.http
-      .get('https://ng-complete-guide-fc164.firebaseio.com/recipes.json')
-      .subscribe((recipes) => {});
+      .get<Recipe[]>(
+        'https://ng-complete-guide-fc164.firebaseio.com/recipes.json'
+      )
+      .subscribe((recipes) => {
+        this.recipeService.setRecipes(recipes);
+      });
   }
 }
