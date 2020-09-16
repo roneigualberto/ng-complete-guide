@@ -13,7 +13,7 @@ export class RecipeService {
 
   constructor(private shoppingListService: ShoppingListService) {}
 
-  private recipes: Recipe[] = [
+  /*private recipes: Recipe[] = [
     new Recipe(
       'A Test Recipe',
       'This is simply tst',
@@ -26,7 +26,9 @@ export class RecipeService {
       'https://www.nps.gov/subjects/camping/images/recipe_1.jpg',
       [new Ingredient('Buns', 1), new Ingredient('Meat', 1)]
     ),
-  ];
+  ];*/
+
+  private recipes: Recipe[] = [];
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
