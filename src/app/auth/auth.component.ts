@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
   isLoginMode = true;
+  isLoading = false;
+  error = null;
 
   constructor(private authService: AuthService) {}
 
@@ -26,14 +28,19 @@ export class AuthComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
 
+    this.isLoading = true;
+
     if (this.isLoginMode) {
     } else {
       this.authService.signup(email, password).subscribe(
         (respData) => {
+          this.isLoading = false;
           console.log(respData);
         },
         (error) => {
           console.log(error);
+          this.error = 'An error occured';
+          this.isLoading = false;
         }
       );
     }
